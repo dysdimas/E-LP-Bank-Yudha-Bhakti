@@ -2,74 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Link User
-Route::get('/', 'UserController@index');
 // Link Login
 Route::get('/auth', 'AuthController@index')->name('login');
 // Link Auth
 Route::post('/authentic', 'AuthController@authentic');
 Route::get('/logout', 'AuthController@logout');
 // Link feature
-Route::get('/feature', 'UserController@featurelist');
-Route::get('/feature/{id}', 'UserController@featureshow');
-// Life Search
-Route::get('admincontroller/action', 'AdminController@action')->name('admincontroller.action');
-// Link Ceom
-Route::get('/ceom', 'UserController@ceom');
-// Link Mfbod
-Route::get('/mfbod', 'UserController@mfbod');
-// Link Dep Rate
-Route::get('/deprate', 'UserController@deprate');
-// Branch News
-Route::get('/branchnews', 'UserController@branchlist');
-Route::get('/branchnews/{id}', 'UserController@branch');
-// Division
-Route::get('/division', 'UserController@divisionlist');
-Route::get('/division/{id}', 'UserController@division');
-// HotNews
-Route::get('/hotnews/{id}', 'UserController@hotnews');
-// Tech
-Route::get('/tech', 'UserController@techlist');
-Route::get('/tech/{id}', 'UserController@tech');
-//Videos
-Route::get('/videos', 'UserController@videoslist');
-//Comment Divisi
-Route::post('/comment_divisi', 'UserController@commentdiv');
-//Comment Branch
-Route::post('/comment_branch', 'UserController@commentbranch');
-//Comment Tech
-Route::post('/comment_tech', 'UserController@commenttech');
-//Comment Tech
-Route::post('/comment_feature', 'UserController@commentfeature');
-//Comment HotNews
-Route::post('/comment_hotnews', 'UserController@commenthotnews');
-//Dictionary
-Route::get('/dictionary', 'UserController@dictionlist');
-Route::get('/diction/{id}', 'UserController@diction');
-//Forum Sugcom
-Route::get('/forum_sugcom', 'UserController@forum_sugcom');
-//Training Manual 
-Route::get('/user_manualtraining', 'UserController@manual_training');
-//Training Video 
-Route::get('/user_videotraining', 'UserController@video_training');
-//Video DPP
-Route::get('/videodpp', 'UserController@video_dpp');
-//Report
-//Ojk
-Route::get('/ojkreport', 'UserController@ojk_report');
-Route::get('/downloadojk/{filename}', 'UserController@ojk_download');
-Route::get('/bireport', 'UserController@bi_report');
-Route::get('/downloadbi/{filename}', 'UserController@bi_download');
-//Funding
-Route::get('/fundingpp', 'UserController@funding_pp');
-//Service
-Route::get('/servicepp', 'UserController@service_pp');
-//Credit
-Route::get('/creditpp', 'UserController@credit_pp');
-//Operational
-Route::get('/operationalpp', 'UserController@operational_pp');
-//General
-Route::get('/generalpp', 'UserController@general_pp');
+
 
 
 Route::group(['middleware' => 'revalidate'], function () {
@@ -85,6 +24,72 @@ Route::group(['middleware' => 'revalidate'], function () {
         // Change Password
         // Route::post('/updatepassworduser/{id}', 'PortalController@updatepassuser');
         Route::post('/updatepassworduser/{id}', 'UserController@updatepassuser');
+
+        //////////////////////////////////////////
+        Route::get('/feature', 'UserController@featurelist');
+        Route::get('/feature/{id}', 'UserController@featureshow');
+        // Life Search
+        Route::get('admincontroller/action', 'AdminController@action')->name('admincontroller.action');
+        // Link Ceom
+        Route::get('/ceom', 'UserController@ceom');
+        // Link Mfbod
+        Route::get('/mfbod', 'UserController@mfbod');
+        // Link Dep Rate
+        Route::get('/deprate', 'UserController@deprate');
+        // Branch News
+        Route::get('/branchnews', 'UserController@branchlist');
+        Route::get('/branchnews/{id}', 'UserController@branch');
+        // Division
+        Route::get('/division', 'UserController@divisionlist');
+        Route::get('/division/{id}', 'UserController@division');
+        // HotNews
+        Route::get('/hotnews/{id}', 'UserController@hotnews');
+        // Tech
+        Route::get('/tech', 'UserController@techlist');
+        Route::get('/tech/{id}', 'UserController@tech');
+        //Videos
+        Route::get('/videos', 'UserController@videoslist');
+        //Comment Divisi
+        Route::post('/comment_divisi', 'UserController@commentdiv');
+        //Comment Branch
+        Route::post('/comment_branch', 'UserController@commentbranch');
+        //Comment Tech
+        Route::post('/comment_tech', 'UserController@commenttech');
+        //Comment Tech
+        Route::post('/comment_feature', 'UserController@commentfeature');
+        //Comment HotNews
+        Route::post('/comment_hotnews', 'UserController@commenthotnews');
+        //Dictionary
+        Route::get('/dictionary', 'UserController@dictionlist');
+        Route::get('/diction/{id}', 'UserController@diction');
+        //Forum Sugcom
+        Route::get('/forum_sugcom', 'UserController@forum_sugcom');
+        //Training Manual 
+        Route::get('/user_manualtraining', 'UserController@manual_training');
+        //Training Video 
+        Route::get('/user_videotraining', 'UserController@video_training');
+        //Video DPP
+        Route::get('/videodpp', 'UserController@video_dpp');
+        //Report
+        //Ojk
+        Route::get('/ojkreport', 'UserController@ojk_report');
+        Route::get('/downloadojk/{filename}', 'UserController@ojk_download');
+        Route::get('/bireport', 'UserController@bi_report');
+        Route::get('/downloadbi/{filename}', 'UserController@bi_download');
+        //Funding
+        Route::get('/fundingpp', 'UserController@funding_pp');
+        //Service
+        Route::get('/servicepp', 'UserController@service_pp');
+        //Credit
+        Route::get('/creditpp', 'UserController@credit_pp');
+        //Operational
+        Route::get('/operationalpp', 'UserController@operational_pp');
+        //General
+        Route::get('/generalpp', 'UserController@general_pp');
+
+
+        // Link User
+        Route::get('/', 'UserController@index');
     });
 
     Route::group(['middleware' => ['auth', 'checkRole:1']], function () {

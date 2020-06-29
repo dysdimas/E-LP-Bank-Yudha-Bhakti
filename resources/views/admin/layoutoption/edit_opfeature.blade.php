@@ -41,18 +41,6 @@
                             <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Thumbnail 2</label>
-                            <input type="file" name="image2" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Thumbnail 3</label>
-                            <input type="file" name="image3" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Description</label>

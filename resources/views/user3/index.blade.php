@@ -69,7 +69,7 @@
         <div class="row">
             <div class="offset-lg-2 col-lg-8">
                 <div class="title_box">
-                    <h2>Banner</h2>
+                    <h2>Budaya Kerja Bank Yudha Bhakti</h2>
                     <div class="title_border"></div>
                     <br>
                 </div>

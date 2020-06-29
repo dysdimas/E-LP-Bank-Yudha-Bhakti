@@ -6,7 +6,8 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <h3 align="center">Operational Files</h3>
-
+                <hr>
+                <marquee behavior="10" direction="10" scrollamount="10" style="color:red;">Tindakan apapun yang dilakukan user pada website ini akan tercatat di activity log kami, maka bijaksana dan jangan menyalahgunakan berkas-berkas penting tersebut</marquee>
                 <!-- The button used to copy the text -->
 
                 <!-- <input type='text' id='input' onkeyup='searchTable()'> -->

@@ -260,12 +260,6 @@ class AdminController extends Controller
             ->addColumn('image', function ($of) {
                 return "<img src='imagesfeature/$of->image')}}' class='img-thumbnail' width='100' height='100'></img>";
             })
-            ->addColumn('image2', function ($of) {
-                return "<img src='imagesfeature/$of->image2')}}' class='img-thumbnail' width='100' height='100'></img>";
-            })
-            ->addColumn('image3', function ($of) {
-                return "<img src='imagesfeature/$of->image3')}}' class='img-thumbnail' width='100' height='100'></img>";
-            })
             ->addColumn('description', function ($of) {
                 return str_word_count($of->description) . ' words';
             })
@@ -279,7 +273,7 @@ class AdminController extends Controller
                             <i class='fas fa-trash-alt'></i>
                         </a>";
             })
-            ->rawColumns(['action', 'image', 'image2', 'image3', 'description'])
+            ->rawColumns(['action', 'image', 'description'])
             ->toJson();
     }
 
@@ -289,11 +283,9 @@ class AdminController extends Controller
             'title' => 'required|max:100',
             'subtitle' => 'required|max:200',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'image2' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'image3' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'description' => 'required'
         ]);
-        if ($request->hasFile('image') && $request->hasFile('image2') && $request->hasFile('image3')) {
+        if ($request->hasFile('image')) {
             $title          = $request->title;
             $subtitle       = $request->subtitle;
             $time           = $request->time;
@@ -305,23 +297,9 @@ class AdminController extends Controller
             $filename       = time() + 1 . '.' . $extension;
             $resorce->move(\base_path() . "/public/imagesfeature", $filename);
 
-            $resorce2        = $request->file('image2');
-            $file2           = $request->file('image2');
-            $extension2      = $file2->getClientOriginalExtension();
-            $filename2       = time() + 2 . '.' . $extension2;
-            $resorce2->move(\base_path() . "/public/imagesfeature", $filename2);
-
-            $resorce3        = $request->file('image3');
-            $file3           = $request->file('image3');
-            $extension3      = $file3->getClientOriginalExtension();
-            $filename3       = time() + 3 . '.' . $extension3;
-            $resorce3->move(\base_path() . "/public/imagesfeature", $filename3);
-
 
             $save = DB::table('opfeature')->insert([
                 'image'         => $filename,
-                'image2'         => $filename2,
-                'image3'         => $filename3,
                 'subtitle'      => $subtitle,
                 'title'         => $title,
                 'time'          => $time,
@@ -341,8 +319,6 @@ class AdminController extends Controller
         $data_opfeature = \App\Opfeature::find($id);
         $data_opfeature->delete();
         unlink(public_path() . "/imagesfeature/" . $data_opfeature->image);
-        unlink(public_path() . "/imagesfeature/" . $data_opfeature->image2);
-        unlink(public_path() . "/imagesfeature/" . $data_opfeature->image3);
         return redirect('/opfeature')->with('sukses', 'Berhasil Menghapus Field');
     }
 
@@ -378,47 +354,6 @@ class AdminController extends Controller
             unlink(public_path() . "/imagesfeature/" . $edit_feature->image);
             $file->move(\base_path() . "/public/imagesfeature", $filename);
             $edit_feature->image = $filename;
-            $edit_feature->save();
-            return redirect('/opfeature')->with('sukses', 'Data berhasil di update');
-        } elseif ($request->hasFile('image2')) {
-            $file2       = $request->file('image2');
-            $extension2  = $file2->getClientOriginalExtension();
-            $filename2   = time() + 2 . '.' . $extension2;
-            unlink(public_path() . "/imagesfeature/" . $edit_feature->image2);
-            $file2->move(\base_path() . "/public/imagesfeature", $filename2);
-            $edit_feature->image2 = $filename2;
-            $edit_feature->save();
-            return redirect('/opfeature')->with('sukses', 'Data berhasil di update');
-        } elseif ($request->hasFile('image3')) {
-            $file3       = $request->file('image3');
-            $extension3  = $file3->getClientOriginalExtension();
-            $filename3   = time() + 3 . '.' . $extension3;
-            unlink(public_path() . "/imagesfeature/" . $edit_feature->image3);
-            $file3->move(\base_path() . "/public/imagesfeature", $filename3);
-            $edit_feature->image3 = $filename3;
-            $edit_feature->save();
-            return redirect('/opfeature')->with('sukses', 'Data berhasil di update');
-        } elseif ($request->hasFile('image') || $request->hasFile('image2') || $request->hasFile('image3')) {
-            $file       = $request->file('image');
-            $extension  = $file->getClientOriginalExtension();
-            $filename   = time() + 1 . '.' . $extension;
-            unlink(public_path() . "/imagesfeature/" . $edit_feature->image);
-            $file->move(\base_path() . "/public/imagesfeature", $filename);
-            $edit_feature->image = $filename;
-
-            $file2       = $request->file('image2');
-            $extension2  = $file2->getClientOriginalExtension();
-            $filename2   = time() + 2 . '.' . $extension2;
-            unlink(public_path() . "/imagesfeature/" . $edit_feature->image2);
-            $file2->move(\base_path() . "/public/imagesfeature", $filename2);
-            $edit_feature->image2 = $filename2;
-
-            $file3       = $request->file('image3');
-            $extension3  = $file3->getClientOriginalExtension();
-            $filename3   = time() + 3 . '.' . $extension3;
-            unlink(public_path() . "/imagesfeature/" . $edit_feature->image3);
-            $file3->move(\base_path() . "/public/imagesfeature", $filename3);
-            $edit_feature->image3 = $filename3;
             $edit_feature->save();
             return redirect('/opfeature')->with('sukses', 'Data berhasil di update');
         } else {

@@ -40,7 +40,7 @@ class UserController extends Controller
         //     'data_opfeature' => $data_opfeature
         // ]);
         $title = 'Feature List';
-        $data_opfeature = \App\Opfeature::paginate(9);
+        $data_opfeature = DB::table('opfeature')->orderBy('updated_at', 'DESC')->paginate(9);
         return view('user3.feature', ['title' => $title, 'data_opfeature' => $data_opfeature]);
     }
 

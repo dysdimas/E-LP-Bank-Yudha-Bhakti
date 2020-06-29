@@ -17,10 +17,11 @@ $data_user = \App\User::all();
 $data_sugcom = \App\Opsugcom::all();
 $data_videos = \App\OpvideosDpp::all();
 $data_feature = \App\Opfeature::all();
-$data_hotnews = \App\Ophot::all();
-$data_branch = \App\Ibranch::all();
-$data_divisi = \App\Idivision::all();
-$data_tech = \App\Itech::all();
+$data_credit = \App\Creditpp::all();
+$data_funding = \App\Fundingpp::all();
+$data_service = \App\Servicepp::all();
+$data_operational = \App\Operationalpp::all();
+$data_general = \App\Generalpp::all();
 ?>
 <!-- Main content -->
 <section class="content">
@@ -101,7 +102,7 @@ $data_tech = \App\Itech::all();
                             <div class="float-left mini-stat-img mr-4">
                                 <i class="fab fa-hubspot"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Feature</h5>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">News</h5>
                             <h6>{{$data_feature->count()}}</h6>
                         </div>
                     </div>
@@ -114,10 +115,10 @@ $data_tech = \App\Itech::all();
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="float-left mini-stat-img mr-4">
-                                <i class="fas fa-fire"></i>
+                                <i class="fa fa-exclamation"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Hot News</h5>
-                            <h6>{{$data_hotnews->count()}}</h6>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Credit Files</h5>
+                            <h6>{{$data_credit->count()}}</h6>
                         </div>
                     </div>
                 </div>
@@ -129,10 +130,10 @@ $data_tech = \App\Itech::all();
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="float-left mini-stat-img mr-4">
-                                <i class="fas fa-project-diagram"></i>
+                                <i class="fa fa-exclamation"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Branch</h5>
-                            <h6>{{$data_branch->count()}}</h6>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Funding Files</h5>
+                            <h6>{{$data_funding->count()}}</h6>
                         </div>
                     </div>
                 </div>
@@ -144,10 +145,10 @@ $data_tech = \App\Itech::all();
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="float-left mini-stat-img mr-4">
-                                <i class="fas fa-briefcase"></i>
+                                <i class="fa fa-exclamation"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Division</h5>
-                            <h6>{{$data_divisi->count()}}</h6>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Service Files</h5>
+                            <h6>{{$data_service->count()}}</h6>
                         </div>
                     </div>
                 </div>
@@ -159,10 +160,25 @@ $data_tech = \App\Itech::all();
                     <div class="card-body">
                         <div class="mb-4">
                             <div class="float-left mini-stat-img mr-4">
-                                <i class="fas fa-mobile"></i>
+                                <i class="fa fa-exclamation"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Tech</h5>
-                            <h6>{{$data_tech->count()}}</h6>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Operate Files</h5>
+                            <h6>{{$data_operational->count()}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <!-- ./col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary text-white">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="float-left mini-stat-img mr-4">
+                                <i class="fa fa-exclamation"></i>
+                            </div>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">General Files</h5>
+                            <h6>{{$data_general->count()}}</h6>
                         </div>
                     </div>
                 </div>

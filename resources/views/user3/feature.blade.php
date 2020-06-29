@@ -8,6 +8,10 @@
                 <div class="news_box blog_page">
                     <div class="news_img"> <img class="img-fluid" src="{{asset('imagesfeature/'.$div->image.'')}}" alt="news-2">
                         <div class="news_date">
+                            <div class="blog_date_img">
+                                <div class="blog_date_1"></div>
+                                <div class="blog_date_2"></div>
+                            </div>
                             <div class="date_box">
                                 <h2><span class="large">{{date('d',strtotime($div->updated_at))}}</span> <br>
                                     {{date('M',strtotime($div->updated_at))}}</h2>

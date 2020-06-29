@@ -55,7 +55,7 @@ TABLES OF CSS
 ===================*/
 body {
   background-repeat: repeat;
-  background: #252735;
+  background: #a8a6a6;
   font-family: "Roboto", sans-serif;
   color: #e9ecef;
   font-size: 14px;
@@ -225,7 +225,7 @@ hr {
 }
 
 .bg-danger {
-  background-color: #ec4561 !important;
+  background-color: #f6251e !important;
 }
 
 .bg-muted {
@@ -1316,8 +1316,8 @@ button:focus {
 }
 
 .btn-danger {
-  background-color: #ec4561;
-  border: 1px solid #ec4561;
+  background-color: #f6251e;
+  border: 1px solid #f6251e;
 }
 
 .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .btn-danger.active,

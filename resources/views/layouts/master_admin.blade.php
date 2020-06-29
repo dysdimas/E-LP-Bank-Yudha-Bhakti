@@ -173,7 +173,7 @@
             @yield('content')
             <!-- content -->
             <footer class="footer">
-                <strong>PT.BankYudhaBhakti.Tbk,</strong>
+                <strong>PT.BankYudhaBhakti.Tbk, Powered by Digital Banking</strong>
             </footer>
 
         </div>

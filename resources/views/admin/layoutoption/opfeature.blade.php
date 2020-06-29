@@ -46,36 +46,11 @@
                                             <th scope="col">Title</th>
                                             <th scope="col">sub-Title</th>
                                             <th scope="col">Image</th>
-                                            <th scope="col">Image 2</th>
-                                            <th scope="col">Image 3</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Time</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tbody>
-                                        @foreach($data_opfeature as $of)
-                                        <tr>
-                                            <td><b>{{$loop->iteration}}</b></td>
-                                            <td>{{$of->title}}</td>
-                                            <td>{{$of->subtitle}}</td>
-                                            <td><img src="{{asset('imagesfeature/'.$of->image.'')}}" class="img-thumbnail" width="100" height="100"></td>
-                                            <td><img src="{{asset('imagesfeature/'.$of->image2.'')}}" class="img-thumbnail" width="100" height="100"></td>
-                                            <td><img src="{{asset('imagesfeature/'.$of->image3.'')}}" class="img-thumbnail" width="100" height="100"></td>
-                                            <td>{{str_word_count($of->description)}} words</td>
-                                            <td>{{$of->time}}</td>
-                                            <td>
-                                                <a href="{{url('/opfeature/edit/'.$of->id)}}">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                &nbsp;
-                                                &nbsp;
-                                                <a href="{{url('/opfeature/delete/'.$of->id)}}">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach -->
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -120,18 +95,6 @@
                                             <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" multiple="true" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="exampleFormControlFile1">Thumbnail 2</label>
-                                            <input type="file" name="image2" class="form-control-file" id="exampleFormControlFile1" multiple="true" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="exampleFormControlFile1">Thumbnail 3</label>
-                                            <input type="file" name="image3" class="form-control-file" id="exampleFormControlFile1" multiple="true" required>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Description</label>
@@ -170,14 +133,6 @@
                 {
                     data: 'image',
                     name: 'image'
-                },
-                {
-                    data: 'image2',
-                    name: 'image2'
-                },
-                {
-                    data: 'image3',
-                    name: 'image3'
                 },
                 {
                     data: 'description',
