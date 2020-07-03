@@ -24,6 +24,8 @@ use App\Fundingpp;
 use App\Bi;
 use App\Creditpp;
 use App\Generalpp;
+use App\Manualdpp;
+use App\Manualrc;
 use App\Opcarousel;
 use App\Operationalpp;
 use App\Opimage;
@@ -680,7 +682,7 @@ class AdminController extends Controller
 
         $request->validate([
             'title' => 'required|max:100',
-            'pdf' => 'required|file|mimes:pdf'
+            'pdf' => 'required|file|mimes:pdf,doc,docx'
         ]);
         $editojk_report->title         = $request->input('title');
         $editojk_report->updated_at  = $request->input('updated_at');
@@ -1274,5 +1276,184 @@ class AdminController extends Controller
 
         $editgeneral_pp->save();
         return redirect('/admin_general')->with('sukses', 'Data berhasil di update');
+    }
+
+    //Manual Training
+    //Dpp
+    public function manual_report()
+    {
+        $title = 'Manual Training';
+        return view('admin.trainingmaterial.manualdpp_report', ['title' => $title]);
+    }
+
+    public function cr_manualdpp(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:100',
+            'pdf' => 'required|file|mimes:pdf,doc,docx'
+        ]);
+
+        if ($request->hasFile('pdf')) {
+            $title     = $request->title;
+            $updated_at = $request->updated_at;
+            $resorce = $request->file('pdf');
+            $file           = $request->file('pdf');
+            $extension      = $file->getClientOriginalExtension();
+            $filename       = time() . '.' . $extension;
+            $resorce->move(\base_path() . "/public/manualdpp", $filename);
+            $save = DB::table('manualdpp')->insert([
+                'filename' => $filename,
+                'title'   => $title,
+                'updated_at' => $updated_at
+            ]);
+            echo "File Berhasil di Upload";
+            return redirect('/admin_manualdpp')->with('sukses', 'Berhasil Create Field');
+        } else {
+            echo "File Gagal di Upload";
+            return redirect('/admin_manualdpp');
+        }
+    }
+
+    public function getdatamanualdpp()
+    {
+        $manualdpp = Manualdpp::select('manualdpp.*');
+        return \DataTables::eloquent($manualdpp)
+            ->addColumn('action', function ($s) {
+                return "<a href='/manualdppreport/edit/$s->id'>
+                <i class='fas fa-edit'></i>
+            </a>
+            &nbsp;
+            &nbsp;
+            <a href='/manualdppreport/delete/$s->id'>
+                            <i class='fas fa-trash-alt'></i>
+                        </a>";
+            })
+            ->rawColumns(['action'])
+            ->toJson();
+    }
+
+    public function delete_manualdpp($id)
+    {
+        $data_manualdpp = \App\Manualdpp::find($id);
+        $data_manualdpp->delete();
+        unlink(public_path() . "/manualdpp/" . $data_manualdpp->filename);
+        return redirect('/admin_manualdpp')->with('sukses', 'Berhasil Menghapus Field');
+    }
+
+    public function editmanualdpp_report($id)
+    {
+        $title         = 'Edit Manual Dpp';
+        $edit_manualdpp = \App\Manualdpp::find($id);
+        return view('admin.trainingmaterial.editmanualdpp_report', ['title' => $title, 'edit_manualdpp' => $edit_manualdpp]);
+    }
+
+    public function updatemanualdpp_report(Request $request, $id)
+    {
+        $editmanualdpp_report              = \App\Manualdpp::find($id);
+
+        $request->validate([
+            'title' => 'required|max:100',
+            'pdf' => 'required|file|mimes:pdf,doc,docx'
+        ]);
+        $editmanualdpp_report->title         = $request->input('title');
+        $editmanualdpp_report->updated_at  = $request->input('updated_at');
+
+        if ($request->hasFile('pdf')) {
+            $file           = $request->file('pdf');
+            $extension      = $file->getClientOriginalExtension();
+            $filename       = time() . '.' . $extension;
+            unlink(public_path() . "/manualdpp/" . $editmanualdpp_report->filename);
+            $file->move(\base_path() . "/public/manualdpp", $filename);
+            $editmanualdpp_report->filename = $filename;
+        }
+
+        $editmanualdpp_report->save();
+        return redirect('/admin_manualdpp')->with('sukses', 'Data berhasil di update');
+    }
+
+    // Division Risk & Compliance
+    public function cr_manualrc(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:100',
+            'pdf' => 'required|file|mimes:pdf,doc,docx'
+        ]);
+
+        if ($request->hasFile('pdf')) {
+            $title     = $request->title;
+            $updated_at = $request->updated_at;
+            $resorce = $request->file('pdf');
+            $file           = $request->file('pdf');
+            $extension      = $file->getClientOriginalExtension();
+            $filename       = time() . '.' . $extension;
+            $resorce->move(\base_path() . "/public/manualrc", $filename);
+            $save = DB::table('manualrc')->insert([
+                'filename' => $filename,
+                'title'   => $title,
+                'updated_at' => $updated_at
+            ]);
+            echo "File Berhasil di Upload";
+            return redirect('/admin_manualdpp')->with('sukses', 'Berhasil Create Field');
+        } else {
+            echo "File Gagal di Upload";
+            return redirect('/admin_manualdpp');
+        }
+    }
+
+    public function getdatamanualrc()
+    {
+        $manualrc = Manualrc::select('manualrc.*');
+        return \DataTables::eloquent($manualrc)
+            ->addColumn('action', function ($s) {
+                return "<a href='/manualrcreport/edit/$s->id'>
+                <i class='fas fa-edit'></i>
+            </a>
+            &nbsp;
+            &nbsp;
+            <a href='/manualrcreport/delete/$s->id'>
+                            <i class='fas fa-trash-alt'></i>
+                        </a>";
+            })
+            ->rawColumns(['action'])
+            ->toJson();
+    }
+
+    public function delete_manualrc($id)
+    {
+        $data_manualrc = \App\Manualrc::find($id);
+        $data_manualrc->delete();
+        unlink(public_path() . "/manualrc/" . $data_manualrc->filename);
+        return redirect('/admin_manualdpp')->with('sukses', 'Berhasil Menghapus Field');
+    }
+
+    public function editmanualrc_report($id)
+    {
+        $title         = 'Edit Manual Risk & Compliance';
+        $edit_manualrc = \App\Manualrc::find($id);
+        return view('admin.trainingmaterial.editmanualrc_report', ['title' => $title, 'edit_manualrc' => $edit_manualrc]);
+    }
+
+    public function updatemanualrc_report(Request $request, $id)
+    {
+        $edit_manualrc_report              = \App\Manualrc::find($id);
+
+        $request->validate([
+            'title' => 'required|max:100',
+            'pdf' => 'required|file|mimes:pdf,doc,docx'
+        ]);
+        $edit_manualrc_report->title         = $request->input('title');
+        $edit_manualrc_report->updated_at  = $request->input('updated_at');
+
+        if ($request->hasFile('pdf')) {
+            $file           = $request->file('pdf');
+            $extension      = $file->getClientOriginalExtension();
+            $filename       = time() . '.' . $extension;
+            unlink(public_path() . "/manualrc/" . $edit_manualrc_report->filename);
+            $file->move(\base_path() . "/public/manualrc", $filename);
+            $edit_manualrc_report->filename = $filename;
+        }
+
+        $edit_manualrc_report->save();
+        return redirect('/admin_manualdpp')->with('sukses', 'Data berhasil di update');
     }
 }

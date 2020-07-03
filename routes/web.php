@@ -7,9 +7,19 @@ Route::get('/auth', 'AuthController@index')->name('login');
 // Link Auth
 Route::post('/authentic', 'AuthController@authentic');
 Route::get('/logout', 'AuthController@logout');
-// Link feature
 
+//Ojk
+Route::get('/ojkreport', 'UserController@ojk_report');
+Route::get('/downloadojk/{filename}', 'UserController@ojk_download');
+Route::get('/bireport', 'UserController@bi_report');
+Route::get('/downloadbi/{filename}', 'UserController@bi_download');
 
+//ManualDpp
+Route::get('/manualdppreport', 'UserController@manualdpp_report');
+Route::get('/downloadmanualdpp/{filename}', 'UserController@manualdpp_download');
+//ManualRc
+Route::get('/manualrcreport', 'UserController@manualrc_report');
+Route::get('/downloadmanualrc/{filename}', 'UserController@manualrc_download');
 
 Route::group(['middleware' => 'revalidate'], function () {
     // Routes yang mau di revalidate masukan di sini
@@ -26,6 +36,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/updatepassworduser/{id}', 'UserController@updatepassuser');
 
         //////////////////////////////////////////
+        // Link feature
         Route::get('/feature', 'UserController@featurelist');
         Route::get('/feature/{id}', 'UserController@featureshow');
         // Life Search
@@ -71,11 +82,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         //Video DPP
         Route::get('/videodpp', 'UserController@video_dpp');
         //Report
-        //Ojk
-        Route::get('/ojkreport', 'UserController@ojk_report');
-        Route::get('/downloadojk/{filename}', 'UserController@ojk_download');
-        Route::get('/bireport', 'UserController@bi_report');
-        Route::get('/downloadbi/{filename}', 'UserController@bi_download');
+
         //Funding
         Route::get('/fundingpp', 'UserController@funding_pp');
         //Service
@@ -213,5 +220,20 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/generalpp/delete/{id}', 'AdminController@delete_general'); //Penting
         Route::get('/generalpp/edit/{id}', 'AdminController@editgeneral_pp'); //Penting
         Route::post('/generalpp/update/{id}', 'AdminController@updategeneral_pp'); //Penting
+
+        //Manual Dpp
+        Route::get('/admin_manualdpp', 'AdminController@manual_report'); //Penting
+        Route::post('upmanualdpp', 'AdminController@cr_manualdpp'); //Penting
+        Route::get('/getlistmanualdpp', ['uses' => 'AdminController@getdatamanualdpp', 'as' => 'ajax.get.data.manualdpp']); //Penting
+        Route::get('/manualdppreport/delete/{id}', 'AdminController@delete_manualdpp'); //Penting
+        Route::get('/manualdppreport/edit/{id}', 'AdminController@editmanualdpp_report'); //Penting
+        Route::post('/manualdppreport/update/{id}', 'AdminController@updatemanualdpp_report'); //Penting
+
+        //Manual Rc
+        Route::post('upmanualrc', 'AdminController@cr_manualrc'); //Penting
+        Route::get('/getlistmanualrc', ['uses' => 'AdminController@getdatamanualrc', 'as' => 'ajax.get.data.manualrc']); //Penting
+        Route::get('/manualrcreport/delete/{id}', 'AdminController@delete_manualrc'); //Penting
+        Route::get('/manualrcreport/edit/{id}', 'AdminController@editmanualrc_report'); //Penting
+        Route::post('/manualrcreport/update/{id}', 'AdminController@updatemanualrc_report'); //Penting
     });
 });

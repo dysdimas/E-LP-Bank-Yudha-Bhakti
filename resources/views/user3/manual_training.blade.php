@@ -9,14 +9,10 @@
                         <p>Division Funding & Services</p>
                     </div>
                     <div class="accordion_detail_3">
-                        <h6 style="color:red">Services</h6>
+                        <h6 style="color:red">Services & Funding</h6>
                         <hr>
-                        <a href="/" style="color:red">> Material</a>
+                        <a href="{{url('/manualdppreport')}}" style="color:red">> Material</a>
                         <hr>
-                        <hr>
-                        <h6 style="color:red">Funding</h6>
-                        <hr>
-                        <a href="/" style="color:red">> Material</a>
                     </div>
                 </div>
                 <div class="questions_3">
@@ -26,7 +22,7 @@
                     <div class="accordion_detail_3">
                         <h6 style="color:red">All</h6>
                         <hr>
-                        <a href="/" style="color:red">> Material</a>
+                        <a href="{{url('/manualrcreport')}}" style="color:red">> Material</a>
                         <hr>
                     </div>
                 </div>

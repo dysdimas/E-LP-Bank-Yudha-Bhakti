@@ -302,9 +302,7 @@ class UserController extends Controller
         //PDF file is stored under project/public/download/info.pdf
         $file = public_path() . "/ojk/$filename";
 
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
+        $headers = ['Content-Type' => 'pdf'];
 
         return Response::download($file, $filename, $headers);
     }
@@ -322,9 +320,7 @@ class UserController extends Controller
         //PDF file is stored under project/public/download/info.pdf
         $file = public_path() . "/bi/$filename";
 
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
+        $headers = ['Content-Type' => 'pdf'];
 
         return Response::download($file, $filename, $headers);
     }
@@ -382,5 +378,40 @@ class UserController extends Controller
         $edit_password->password  = bcrypt($request->input('password'));
         $edit_password->save();
         return redirect('/')->with(['sukses' => 'Password has changed']);
+    }
+
+    //ManualDpp
+    public function manualdpp_report()
+    {
+        $title = 'Manual Training Service & Funding';
+        $data_manualdpp = \App\Manualdpp::all();
+        return view('user3.manualdpp', ['title' => $title, 'data_manualdpp' => $data_manualdpp]);
+    }
+
+    public function manualdpp_download($filename)
+    {
+        //PDF file is stored under project/public/download/info.pdf
+        $file = public_path() . "/manualdpp/$filename";
+
+        $headers = ['Content-Type' => 'pdf'];
+
+        return Response::download($file, $filename, $headers);
+    }
+    //ManualRc
+    public function manualrc_report()
+    {
+        $title = 'Manual Training Risk & Compliance';
+        $data_manualrc = \App\Manualrc::all();
+        return view('user3.manualrc', ['title' => $title, 'data_manualrc' => $data_manualrc]);
+    }
+
+    public function manualrc_download($filename)
+    {
+        //PDF file is stored under project/public/download/info.pdf
+        $file = public_path() . "/manualrc/$filename";
+
+        $headers = ['Content-Type' => 'pdf'];
+
+        return Response::download($file, $filename, $headers);
     }
 }
