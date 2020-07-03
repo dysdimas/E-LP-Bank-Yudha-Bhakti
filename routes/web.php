@@ -235,5 +235,8 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/manualrcreport/delete/{id}', 'AdminController@delete_manualrc'); //Penting
         Route::get('/manualrcreport/edit/{id}', 'AdminController@editmanualrc_report'); //Penting
         Route::post('/manualrcreport/update/{id}', 'AdminController@updatemanualrc_report'); //Penting
+
+        // Link User
+        Route::get('/', 'UserController@index');
     });
 });
