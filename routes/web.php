@@ -100,6 +100,8 @@ Route::group(['middleware' => 'revalidate'], function () {
     });
 
     Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
+        // Link User
+        Route::get('/', 'UserController@index');
         // Link Tools
         Route::get('/tools', 'ToolsController@index');
         // Link Admin Config User
@@ -236,7 +238,5 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/manualrcreport/edit/{id}', 'AdminController@editmanualrc_report'); //Penting
         Route::post('/manualrcreport/update/{id}', 'AdminController@updatemanualrc_report'); //Penting
 
-        // Link User
-        Route::get('/', 'UserController@index');
     });
 });

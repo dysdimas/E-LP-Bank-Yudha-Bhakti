@@ -33,7 +33,7 @@
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="{{url('/')}}" class="logo">
+                <a href="{{url('/admin')}}" class="logo">
                     <span>
                         <img src="{{asset('vendor_user3/images/logo.jpg')}}" alt="" height="35">
                     </span>
