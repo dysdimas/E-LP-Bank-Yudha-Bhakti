@@ -100,8 +100,6 @@ Route::group(['middleware' => 'revalidate'], function () {
     });
 
     Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
-        // Link User
-        Route::get('/', 'UserController@index');
         // Link Tools
         Route::get('/tools', 'ToolsController@index');
         // Link Admin Config User

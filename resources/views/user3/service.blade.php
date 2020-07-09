@@ -34,36 +34,11 @@
                     <tbody>
                         @foreach($data_service as $fun)
                         <tr>
-                            <td>{{$fun->title}}</td>
+                            <td><a href="{{$fun->url}}" target="_blank" style="color:red;">{{$fun->title}}</a></td>
 
                             <td>
-                                <input type="text" value="bybdms" id="myInput" style="position: absolute;
-    left: -999em;" aria-hidden="true">
 
-                                <!-- The button used to copy the text -->
-                                <button onclick="myFunction()" class="thm-btn" style="font-size: 12px;">Get Password</button>
-
-                                <script>
-                                    function myFunction() {
-                                        /* Get the text field */
-                                        var copyText = document.getElementById("myInput");
-
-                                        /* Select the text field */
-                                        copyText.select();
-                                        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-
-                                        /* Copy the text inside the text field */
-                                        document.execCommand("copy");
-
-                                        /* Alert the copied text */
-                                        alert("Success, please click read file and paste or ctrl + v");
-                                    }
-                                </script>
-                                <button class="thm-btn" style="font-size: 12px;">
-                                    <div style="top: 0 !important;">
-                                        <a style="color: white;" href="{{$fun->url}}" target="_blank" style="color: red;width: 100%;height: 100%;">Read</a>
-                                    </div>
-                                </button>
+                                <button class="thm-btn" style="font-size: 12px;"><a style="color: white;" href="{{$fun->url}}" target="_blank" style="color: red;width: 100%;height: 100%;">Read</a></button>
                                 <!-- <embed src="{{url('/readfunding/'.$fun->filename.'')}}#toolbar=0&navpanes=0&scrollbar=0" width="425" height="425" oncontextmenu="return false" style="pointer-events:none;" /> -->
 
                             </td>

@@ -183,6 +183,7 @@
             @foreach($data_carousel as $dc)
             <div class="carousel-item active" style="background-image:url(<?php echo 'carousel/' . $dc[0]->image; ?>); background-size:cover; height:650px; width:100%;">
                 <div class="carousel-caption d-none d-md-block">
+                    <h3>Hai {{Session::get('name')}}</h3>
                     <h1>E-Learning Portal <br>
                         Bank Yudha Bhakti</h1>
                     <div class="slider_border"></div>
@@ -201,6 +202,7 @@
             </div>
             <div class="carousel-item" style="background-image:url(<?php echo 'carousel/' . $dc[1]->image; ?>) ; background-size:cover; height:650px; width:100%;">
                 <div class="carousel-caption d-none d-md-block">
+                    <h3>Hai {{Session::get('name')}}</h3>
                     <h1>E-Learning Portal <br>
                         Bank Yudha Bhakti</h1>
                     <div class="slider_border"></div>
@@ -219,6 +221,7 @@
             </div>
             <div class="carousel-item" style="background-image:url(<?php echo 'carousel/' . $dc[2]->image; ?>) ; background-size:cover; height:650px; width:100%;">
                 <div class="carousel-caption d-none d-md-block">
+                    <h3>Hai {{Session::get('name')}}</h3>
                     <h1>E-Learning Portal <br>
                         Bank Yudha Bhakti</h1>
                     <div class="slider_border"></div>
