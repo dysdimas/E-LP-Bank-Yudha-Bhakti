@@ -63,7 +63,7 @@
 
                                 use Illuminate\Support\Facades\Session;
 
-                                if (Session::get('role') == 1) : ?>
+                                if (Session::get('role') == 1 || Session::get('role') == 3) : ?>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalScrollable_changepass">
                                         <i class="mdi mdi-lock-open-outline m-r-5"></i>
                                         <font color="white">Set Password</font>
