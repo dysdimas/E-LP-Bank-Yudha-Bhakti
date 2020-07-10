@@ -366,6 +366,14 @@ class UserController extends Controller
         return view('user3.general', ['title' => $title, 'data_general' => $data_general]);
     }
 
+    //RiskCom
+    public function riskcom_pp()
+    {
+        $title = 'Risk & Compliance';
+        $data_riskcom = \App\Riskcompp::all();
+        return view('user3.riskcom', ['title' => $title, 'data_riskcom' => $data_riskcom]);
+    }
+
     public function updatepassuser(Request $request, $id)
     {
         $edit_password = \App\User::find($id);

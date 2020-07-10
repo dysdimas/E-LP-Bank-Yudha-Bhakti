@@ -22,8 +22,6 @@
                 <div class="form-group">
                     <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Search" id='input' onkeyup='searchTable()'>
                 </div>
-                <marquee behavior="10" direction="10" scrollamount="10" style="color:red;">Sebelum membaca file atau berkas diharapkan tekan tombol get password terlebih dahulu sesuai dengan file yang ingin dibaca</marquee>
-                <br>
                 <table id='table' class="table table-bordered">
                     <thead>
                         <tr>

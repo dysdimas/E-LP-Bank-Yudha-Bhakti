@@ -40,7 +40,7 @@
                         <div class="card">
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="datatable_service" class="table table-bordered table-responsive">
+                                <table id="datatable_riskcom" class="table table-bordered table-responsive">
                                     <thead>
                                         <tr>
                                             <th scope="col">Title</th>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <!-- /.row (main row)s -->
+        <!-- /.row (main row) -->
 
         <!-- Modal Create -->
         <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- form start -->
-                        <form method="post" action="{{url('/upservice')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{url('/upriskcom')}}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="form-group">
@@ -99,10 +99,10 @@
 <!-- /.content -->
 <script>
     $(document).ready(function() {
-        $('#datatable_service').DataTable({
+        $('#datatable_riskcom').DataTable({
             processing: true,
             serverside: true,
-            ajax: "{{route('ajax.get.data.service')}}",
+            ajax: "{{route('ajax.get.data.riskcom')}}",
             columns: [{
                     data: 'title',
                     name: 'title'

@@ -33,7 +33,7 @@ class AuthController extends Controller
                 return redirect('/admin');
             }
         }
-        return redirect('/auth')->with('gagal', 'Opps !!! Mungkin nik & password kamu salah :)');
+        return redirect('/auth')->with('gagal', 'Opps !!! Mungkin nip & password kamu salah :)');
     }
 
     public function logout()

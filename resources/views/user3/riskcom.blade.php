@@ -5,7 +5,7 @@
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
-                <h3 align="center">Funding Files</h3>
+                <h3 align="center">Risk & Compliance Files</h3>
                 <hr>
                 <marquee behavior="10" direction="10" scrollamount="10" style="color:red;">Tindakan apapun yang dilakukan user pada website ini akan tercatat di activity log kami, maka bijaksana dan jangan menyalahgunakan berkas-berkas penting tersebut</marquee>
                 <!-- The button used to copy the text -->
@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data_funding as $fun)
+                        @foreach($data_riskcom as $fun)
                         <tr>
                             <td><a href="{{$fun->url}}" target="_blank" style="color:red;">{{$fun->title}}</a></td>
 

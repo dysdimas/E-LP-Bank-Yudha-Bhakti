@@ -93,6 +93,8 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/operationalpp', 'UserController@operational_pp');
         //General
         Route::get('/generalpp', 'UserController@general_pp');
+        //RiskCom
+        Route::get('/riskcompp', 'UserController@riskcom_pp');
 
 
         // Link User
@@ -189,7 +191,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/fundingpp/edit/{id}', 'AdminController@editfunding_pp'); //Penting
         Route::post('/fundingpp/update/{id}', 'AdminController@updatefunding_pp'); //Penting
 
-        //Funding
+        //Service
         Route::get('/admin_service', 'AdminController@service_pp'); //Penting
         Route::post('upservice', 'AdminController@cr_service'); //Penting
         Route::get('/getlistservice', ['uses' => 'AdminController@getdataservice', 'as' => 'ajax.get.data.service']); //Penting
@@ -220,6 +222,14 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/generalpp/delete/{id}', 'AdminController@delete_general'); //Penting
         Route::get('/generalpp/edit/{id}', 'AdminController@editgeneral_pp'); //Penting
         Route::post('/generalpp/update/{id}', 'AdminController@updategeneral_pp'); //Penting
+
+        //Riskcom
+        Route::get('/admin_riskcom', 'AdminController@riskcom_pp'); //Penting
+        Route::post('upriskcom', 'AdminController@cr_riskcom'); //Penting
+        Route::get('/getlistriskcom', ['uses' => 'AdminController@getdatariskcom', 'as' => 'ajax.get.data.riskcom']); //Penting
+        Route::get('/riskcompp/delete/{id}', 'AdminController@delete_riskcom'); //Penting
+        Route::get('/riskcompp/edit/{id}', 'AdminController@editriskcom_pp'); //Penting
+        Route::post('/riskcompp/update/{id}', 'AdminController@updateriskcom_pp'); //Penting
 
         //Manual Dpp
         Route::get('/admin_manualdpp', 'AdminController@manual_report'); //Penting

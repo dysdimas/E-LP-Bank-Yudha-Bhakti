@@ -30,6 +30,7 @@ use App\Opcarousel;
 use App\Operationalpp;
 use App\Opimage;
 use App\Servicepp;
+use App\Riskcompp;
 
 class AdminController extends Controller
 {
@@ -1455,5 +1456,85 @@ class AdminController extends Controller
 
         $edit_manualrc_report->save();
         return redirect('/admin_manualdpp')->with('sukses', 'Data berhasil di update');
+    }
+
+    // RiskCom 
+    public function riskcom_pp()
+    {
+        $title = 'Riskcom';
+        return view('admin.pp.riskcom_pp', ['title' => $title]);
+    }
+
+    public function cr_riskcom(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:100',
+            'url' => 'required'
+        ]);
+
+        if ($request->title != null) {
+            $title     = $request->title;
+            $url     = $request->url;
+            $updated_at = $request->updated_at;
+
+            $save = DB::table('riskcompp')->insert([
+                'url' => $url,
+                'title'   => $title,
+                'updated_at' => $updated_at
+            ]);
+            echo "File Berhasil di Upload";
+            return redirect('/admin_riskcom')->with('sukses', 'Berhasil Create Field');
+        } else {
+            echo "File Gagal di Upload";
+            return redirect('/admin_riskcom');
+        }
+    }
+
+    public function getdatariskcom()
+    {
+        $riskcom = Riskcompp::select('riskcompp.*');
+        return \DataTables::eloquent($riskcom)
+            ->addColumn('action', function ($s) {
+                return "<a href='/riskcompp/edit/$s->id'>
+                <i class='fas fa-edit'></i>
+            </a>
+            &nbsp;
+            &nbsp;
+            <a href='/riskcompp/delete/$s->id'>
+                            <i class='fas fa-trash-alt'></i>
+                        </a>";
+            })
+            ->rawColumns(['action'])
+            ->toJson();
+    }
+
+    public function delete_riskcom($id)
+    {
+        $data_riskcom = \App\Riskcompp::find($id);
+        $data_riskcom->delete();
+        return redirect('/admin_riskcom')->with('sukses', 'Berhasil Menghapus Field');
+    }
+
+    public function editriskcom_pp($id)
+    {
+        $title         = 'Edit Riskcom';
+        $edit_riskcom = \App\Riskcompp::find($id);
+        return view('admin.pp.editriskcom_pp', ['title' => $title, 'edit_riskcom' => $edit_riskcom]);
+    }
+
+    public function updateriskcom_pp(Request $request, $id)
+    {
+        $editriskcom_pp             = \App\Riskcompp::find($id);
+
+        $request->validate([
+            'title' => 'required|max:200',
+            'url' => 'required|max:1000',
+        ]);
+        $editriskcom_pp->title         = $request->input('title');
+        $editriskcom_pp->url         = $request->input('url');
+        $editriskcom_pp->updated_at  = $request->input('updated_at');
+
+        $editriskcom_pp->save();
+        return redirect('/admin_riskcom')->with('sukses', 'Data berhasil di update');
     }
 }

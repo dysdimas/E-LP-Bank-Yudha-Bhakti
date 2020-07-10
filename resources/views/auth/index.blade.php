@@ -15,6 +15,45 @@
     <link href="{{asset('vendor_admin/assets/css/icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('vendor_admin/assets/css/style.css')}}" rel="stylesheet" type="text/css">
 </head>
+<style>
+    /* The message box is shown when the user clicks on the password field */
+    #message {
+        display: none;
+        background: #2A3142;
+        color: #000;
+        position: relative;
+        padding: 38px;
+        margin-bottom: -40px;
+        padding-bottom: 0%;
+    }
+
+    #message p {
+        padding: 0px 35px;
+        font-size: 16px;
+    }
+
+    /* Add a green text color and a checkmark when the requirements are right */
+    .valid {
+        color: green;
+    }
+
+    .valid:before {
+        position: relative;
+        left: -35px;
+        content: "✔";
+    }
+
+    /* Add a red text color and an "x" when the requirements are wrong */
+    .invalid {
+        color: red;
+    }
+
+    .invalid:before {
+        position: relative;
+        left: -35px;
+        content: "✖";
+    }
+</style>
 
 <body>
     <!-- 
@@ -23,26 +62,50 @@
     </div> -->
 
     <div class="wrapper-page">
-
         <div class="card overflow-hidden account-card mx-3">
-
+            @if(session('gagal'))
+            <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>{{session('gagal')}}</strong>
+            </div>
+            @endif
+            {{-- menampilkan error validasi --}}
+            @if (count($errors) > 0)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <span>{{ $error }}|</span>
+                    @endforeach
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </ul>
+            </div>
+            @endif
             <div class="bg-danger p-4 text-white text-center position-relative">
                 <h4 class="font-20 m-b-5">BYB E-LP</h4>
                 <p class="text-white-50 mb-4">Login Page</p>
                 <!-- <a href="index.html" class="logo logo-admin"><img src="{{asset('vendor_user/img/core-img/hay.ico')}}" height="55" alt="logo"></a> -->
             </div>
+            <div id="message" style="background-color: #2A3142;">
+                <p id="number" class="invalid"><small>Nip must be <b>number</b></small></p>
+                <p id="length" class="invalid"><small>Password minimum <b>6 characters</b></small></p>
+            </div>
+
             <div class="account-card-content">
 
                 <form action="{{url('/authentic')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="username">Nip</label>
-                        <input type="text" class="form-control" name="nik" id="nik" placeholder="Enter nip" required>
+                        <input type="text" class="form-control" id="usrname" name="nik" placeholder="Enter nip" required>
                     </div>
 
                     <div class="form-group has-feedback{{ $errors->has('nik') ? ' has-error ' : '' }}">
                         <label for="userpassword">Password</label>
-                        <input type="password" class="form-control" name="password" id="userpassword" placeholder="Enter password" required>
+                        <input type="password" class="form-control" id="psw" name="password" placeholder="Enter password" required>
                     </div>
 
                     <div class="form-group row m-t-20 has-feedback{{ $errors->has('nik') ? ' has-error ' : '' }}">
@@ -65,6 +128,51 @@
         <div class="m-t-40 text-center">
             <p>PT. Bank Yudha Bhakti Powered by Digital Banking</p>
         </div>
+
+        <script>
+            var myInput = document.getElementById("psw");
+            var myInputUsrname = document.getElementById("usrname");
+            var number = document.getElementById("number");
+            var length = document.getElementById("length");
+
+            // When the user clicks on the password field, show the message box
+            myInput.onfocus = function() {
+                document.getElementById("message").style.display = "block";
+            }
+
+            // When the user clicks on the password field, show the message box
+            myInputUsrname.onfocus = function() {
+                document.getElementById("message").style.display = "block";
+            }
+
+
+            myInputUsrname.onkeyup = function() {
+
+                // Validate numbers
+                var numbers = /[0-9]/g;
+                if (myInputUsrname.value.match(numbers)) {
+                    number.classList.remove("invalid");
+                    number.classList.add("valid");
+                } else {
+                    number.classList.remove("valid");
+                    number.classList.add("invalid");
+                }
+
+            }
+
+            // When the user starts to type something inside the password field
+            myInput.onkeyup = function() {
+                // Validate length
+                if (myInput.value.length >= 6) {
+                    length.classList.remove("invalid");
+                    length.classList.add("valid");
+                } else {
+                    length.classList.remove("valid");
+                    length.classList.add("invalid");
+                }
+
+            }
+        </script>
 
     </div>
     <!-- end wrapper-page -->
